@@ -2,7 +2,6 @@ package com.example.entity;
 
 import javax.persistence.*;
 
-@Entity
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//автоматический генератор айди
@@ -12,15 +11,15 @@ public class Room {
     private Integer number;
     @Column(name = "amount", nullable = true)
     private Integer amount;
-    @Column(name = "type of room", nullable = true, length = 45)
+    @Column(name = "type_of_room", nullable = true, length = 45)
     private String typeOfRoom;
 
     @ManyToOne
-    @JoinColumn(name = "id_staff", referencedColumnName = "id")
+    @JoinColumn(name="id_staff")
     private Staff staff;
 
     @ManyToOne
-    @JoinColumn(name = "id_reservation", referencedColumnName = "id")
+    @JoinColumn(name="id_reservation")
     private Reservation reservation;
 
     public int getId() {

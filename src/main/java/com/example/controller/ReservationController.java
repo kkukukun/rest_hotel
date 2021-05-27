@@ -79,7 +79,7 @@ public class ReservationController {
     }
 
     @RequestMapping(value = "/res/client/{passport}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Reservation>> getReservationByPrice(@PathVariable("passport") String passport) {
+    public ResponseEntity<List<Reservation>> getReservationByClientPassport(@PathVariable("passport") String passport) {
         if (passport == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

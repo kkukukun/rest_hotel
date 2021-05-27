@@ -35,4 +35,5 @@ public class ClientServiceImpl implements ClientInterface {
     public Client findByName(String name) {
         return clientRepo.findClientByName(name);
     }
+    public Client findByPassport(String passport){return  clientRepo.findClientByPassport(passport);}
 }

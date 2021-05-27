@@ -2,7 +2,6 @@ package com.example.service.impl;
 
 import com.example.entity.Room;
 import com.example.repository.RoomRepository;
-import com.example.service.InterfaceService;
 import com.example.service.RoomInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

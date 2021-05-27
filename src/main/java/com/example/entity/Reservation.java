@@ -10,16 +10,16 @@ import java.util.Collection;
 @Entity
 public class Reservation {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//автоматический генератор айди
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private int id;
     @Column(name = "price", nullable = true, precision = 0)
-    private Double price;
+    private Float price;
     @Column(name = "date", nullable = true)
     private Date date;
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(targetEntity=Room.class, mappedBy = "reservation", cascade = {CascadeType.ALL})
-    private Collection<Room> performances;
+    private Collection<Room> rooms;
     @ManyToOne
     @JoinColumn(name = "id_cliente", referencedColumnName = "id")
     private Client client;
@@ -32,14 +32,13 @@ public class Reservation {
     }
 
 
-    public Double getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
-
 
     public Date getDate() {
         return date;
@@ -63,8 +62,8 @@ public class Reservation {
                 "id=" + id +
                 ", price=" + price +
                 ", date=" + date +
-                ", performances=" + performances +
-                ", cliente=" + client +
+                ", pooms=" + rooms +
+                ", client=" + client +
                 '}';
     }
 }

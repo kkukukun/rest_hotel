@@ -23,7 +23,7 @@ public class Client {
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(targetEntity=Reservation.class, mappedBy = "client", cascade = {CascadeType.ALL})
-    private Collection<Reservation> performances;
+    private Collection<Reservation> reservations;
     public int getId() {
         return id;
     }
