@@ -2,6 +2,7 @@ package com.example.entity;
 
 import javax.persistence.*;
 
+@Entity
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//автоматический генератор айди
