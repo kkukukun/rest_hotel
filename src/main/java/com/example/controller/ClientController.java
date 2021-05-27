@@ -17,51 +17,51 @@ public class ClientController {
 
     @Qualifier("clientServiceImpl")
     @Autowired
-    ClientInterface resRepo;
+    ClientInterface clientInterface;
 
-    @RequestMapping(value = "/cli/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/client/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Client> getClientById(@PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        Client res = this.resRepo.findById(id);
-        if (res == null) {
+        Client client = this.clientInterface.findById(id);
+        if (client == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(res, HttpStatus.OK);
+        return new ResponseEntity<>(client, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/cli", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Client> addClient(@RequestBody Client res) {
+    @RequestMapping(value = "/client", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Client> addClient(@RequestBody Client client) {
         HttpHeaders headers = new HttpHeaders();
-        if (res == null) {
+        if (client == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        this.resRepo.save(res);
-        return new ResponseEntity<>(res, headers, HttpStatus.CREATED);
+        this.clientInterface.save(client);
+        return new ResponseEntity<>(client, headers, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/clie/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/client/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Client> deleteClient(@PathVariable("id") Long id) {
-        Client res = this.resRepo.findById(id);
+        Client client = this.clientInterface.findById(id);
 
-        if (res == null) {
+        if (client == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        this.resRepo.delete(id);
+        this.clientInterface.delete(id);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "/clies", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/clients", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Client>> getAllClient() {
-        List<Client> res = this.resRepo.findAll();
+        List<Client> clients = this.clientInterface.findAll();
 
-        if (res.isEmpty()) {
+        if (clients.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<>(res, HttpStatus.OK);
+        return new ResponseEntity<>(clients, HttpStatus.OK);
     }
 
 }
