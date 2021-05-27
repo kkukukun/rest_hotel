@@ -22,7 +22,7 @@ public class Client {
     private String passport;
 
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(targetEntity=Reservation.class, mappedBy = "director", cascade = {CascadeType.ALL})
+    @OneToMany(targetEntity=Reservation.class, mappedBy = "client", cascade = {CascadeType.ALL})
     private Collection<Reservation> performances;
     public int getId() {
         return id;

@@ -4,11 +4,14 @@ import com.example.entity.Client;
 import com.example.entity.Reservation;
 import com.example.repository.ReservationRepository;
 import com.example.service.InterfaceService;
+import com.example.service.ReservationInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class ReservationServiceImpl implements InterfaceService<Reservation> {
+@Service
+public class ReservationServiceImpl implements ReservationInterface {
     @Autowired
     ReservationRepository resRepository;
 
@@ -32,4 +35,13 @@ public class ReservationServiceImpl implements InterfaceService<Reservation> {
     resRepository.deleteById(id);
     }
 
+    @Override
+    public Reservation findByPrice(Long price) {
+        return resRepository.findReservationByPrice(price);
+    }
+
+    @Override
+    public List<Reservation> findByClientPassport(String clientPassport) {
+        return resRepository.findReservationByClientPassport(clientPassport);
+    }
 }

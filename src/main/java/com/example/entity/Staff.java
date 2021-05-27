@@ -20,7 +20,7 @@ public class Staff {
     private String speciality;
 
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(targetEntity= Room.class, mappedBy = "director", cascade = {CascadeType.ALL})
+    @OneToMany(targetEntity= Room.class, mappedBy = "staff", cascade = {CascadeType.ALL})
     private Collection<Room> rooms;
 
     public int getId() {

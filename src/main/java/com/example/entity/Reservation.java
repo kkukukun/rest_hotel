@@ -18,7 +18,7 @@ public class Reservation {
     @Column(name = "date", nullable = true)
     private Date date;
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(targetEntity=Room.class, mappedBy = "director", cascade = {CascadeType.ALL})
+    @OneToMany(targetEntity=Room.class, mappedBy = "reservation", cascade = {CascadeType.ALL})
     private Collection<Room> performances;
     @ManyToOne
     @JoinColumn(name = "id_cliente", referencedColumnName = "id")

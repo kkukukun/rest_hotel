@@ -3,13 +3,14 @@ package com.example.service.impl;
 import com.example.entity.Staff;
 import com.example.repository.StaffRepository;
 import com.example.service.InterfaceService;
+import com.example.service.StaffInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class StaffServiceImpl implements InterfaceService<Staff> {
+public class StaffServiceImpl implements StaffInterface {
 
     @Autowired
     StaffRepository staffRepository;
@@ -32,8 +33,6 @@ public class StaffServiceImpl implements InterfaceService<Staff> {
     public Staff findStaffBySpeciality(String speciality) {
         return staffRepository.findStaffBySpeciality(speciality);
     }
-
-    public Staff findStaffByLastname(String lastname){return staffRepository.findStaffByLastName(lastname);}
 
     @Override
     public void delete(Long id){staffRepository.deleteById(id);}
