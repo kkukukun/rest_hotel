@@ -3,13 +3,15 @@ package com.example.service.impl;
 import com.example.entity.Room;
 import com.example.repository.RoomRepository;
 import com.example.service.InterfaceService;
+import com.example.service.RoomInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class RoomServiceImpl implements InterfaceService<Room>{
+public class RoomServiceImpl implements RoomInterface{
+
     @Autowired
     RoomRepository roomRepository;
 
@@ -24,7 +26,7 @@ public class RoomServiceImpl implements InterfaceService<Room>{
     }
 
     @Override
-    public Room findByAllId(Long id) {
+    public Room findById(Long id) {
         return roomRepository.findRoomById(id);
     }
 
@@ -33,9 +35,8 @@ public class RoomServiceImpl implements InterfaceService<Room>{
     roomRepository.deleteById(id);
     }
 
-    public Room findByNumber(int number) {
+    @Override
+    public Room findByNumber(Integer number) {
         return roomRepository.findRoomByNumber(number);
     }
-
-
 }

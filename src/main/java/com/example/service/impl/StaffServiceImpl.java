@@ -38,8 +38,4 @@ public class StaffServiceImpl implements InterfaceService<Staff> {
     @Override
     public void delete(Long id){staffRepository.deleteById(id);}
 
-    public Staff findByName(String name) {
-        return null;
-    }
-
 }
