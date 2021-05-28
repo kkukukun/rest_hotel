@@ -11,7 +11,7 @@ public class Staff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//автоматический генератор айди
     @Column(name = "id", nullable = false)
-    private int id;
+    private Long id;
     @Column(name = "name", nullable = true, length = 45)
     private String name;
     @Column(name = "lastname", nullable = true, length = 45)
@@ -23,11 +23,11 @@ public class Staff {
     @OneToMany(targetEntity= Room.class, mappedBy = "staff", cascade = {CascadeType.ALL})
     private Collection<Room> rooms;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

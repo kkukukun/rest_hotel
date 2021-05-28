@@ -30,7 +30,7 @@ public class StaffServiceImpl implements StaffInterface {
         return null;
     }
 
-    public Staff findStaffBySpeciality(String speciality) {
+    public Staff findBySpeciality(String speciality) {
         return staffRepository.findStaffBySpeciality(speciality);
     }
 

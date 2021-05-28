@@ -12,7 +12,7 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private int id;
+    private Long id;
     @Column(name = "price", nullable = true, precision = 0)
     private Float price;
     @Column(name = "date", nullable = true)
@@ -21,13 +21,13 @@ public class Reservation {
     @OneToMany(targetEntity=Room.class, mappedBy = "reservation", cascade = {CascadeType.ALL})
     private Collection<Room> rooms;
     @ManyToOne
-    @JoinColumn(name = "id_cliente", referencedColumnName = "id")
+    @JoinColumn(name = "id_client", referencedColumnName = "id")
     private Client client;
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

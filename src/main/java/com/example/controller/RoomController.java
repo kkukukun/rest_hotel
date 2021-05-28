@@ -63,6 +63,16 @@ public class RoomController {
 
         return new ResponseEntity<>(rooms, HttpStatus.OK);
     }
-
+    @RequestMapping(value = "/room/number/{number}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Room> findRoomByNumber(@PathVariable("number") Integer number) {
+        if (number == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        Room room = this.roomRepo.findByNumber(number);
+        if (room == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(room, HttpStatus.OK);
+    }
 
     }

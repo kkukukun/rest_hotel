@@ -7,7 +7,7 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//автоматический генератор айди
     @Column(name = "id", nullable = false)
-    private int id;
+    private Long id;
     @Column(name = "number", nullable = true)
     private Integer number;
     @Column(name = "amount", nullable = true)
@@ -23,11 +23,11 @@ public class Room {
     @JoinColumn(name="id_reservation")
     private Reservation reservation;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -11,7 +11,7 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//автоматический генератор айди
     @Column(name = "id", nullable = false)
-    private int id;
+    private Long id;
     @Column(name = "name", nullable = true, length = 45)
     private String name;
     @Column(name = "surname", nullable = true, length = 45)
@@ -24,11 +24,11 @@ public class Client {
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(targetEntity=Reservation.class, mappedBy = "client", cascade = {CascadeType.ALL})
     private Collection<Reservation> reservations;
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -59,6 +59,13 @@ public class Client {
         this.telephone = telephone;
     }
 
+    public Collection<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Collection<Reservation> reservations) {
+        this.reservations = reservations;
+    }
 
     public String getPassport() {
         return passport;
@@ -68,5 +75,14 @@ public class Client {
         this.passport = passport;
     }
 
-
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", passport='" + passport + '\'' +
+                '}';
+    }
 }

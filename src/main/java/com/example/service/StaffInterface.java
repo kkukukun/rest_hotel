@@ -3,5 +3,5 @@ package com.example.service;
 import com.example.entity.Staff;
 
 public interface StaffInterface extends InterfaceService<Staff>{
-    Staff findStaffBySpeciality(String speciality);
+    Staff findBySpeciality(String speciality);
 }

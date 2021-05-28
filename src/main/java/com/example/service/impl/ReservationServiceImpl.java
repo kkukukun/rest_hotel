@@ -40,8 +40,4 @@ public class ReservationServiceImpl implements ReservationInterface {
         return resRepository.findReservationByPrice(price);
     }
 
-    @Override
-    public List<Reservation> findByClientPassport(String clientPassport) {
-        return resRepository.findReservationByClientPassport(clientPassport);
-    }
 }

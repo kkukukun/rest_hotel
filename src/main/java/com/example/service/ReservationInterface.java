@@ -6,5 +6,4 @@ import java.util.List;
 
 public interface ReservationInterface extends InterfaceService<Reservation>{
     Reservation findByPrice(Long price);
-    List<Reservation> findByClientPassport(String clientPassport);
 }

@@ -20,7 +20,7 @@ public class ClientController {
     ClientInterface clientInterface;
 
     @RequestMapping(value = "/client/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Client> getClientById(@PathVariable("id") Long id) {
+    public ResponseEntity<Client> getClient(@PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -62,6 +62,28 @@ public class ClientController {
         }
 
         return new ResponseEntity<>(clients, HttpStatus.OK);
+    }
+    @RequestMapping(value = "/client/name/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Client> getClientByName(@PathVariable("name") String name) {
+        if (name == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        Client client = this.clientInterface.findByName(name);
+        if (client == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(client, HttpStatus.OK);
+    }
+    @RequestMapping(value = "/client/passport/{passport}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Client> deleteClientByPassport(@PathVariable("passport") String passport) {
+        Client client = this.clientInterface.findByPassport(passport);
+
+        if (client == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        this.clientInterface.delete(client.getId());
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

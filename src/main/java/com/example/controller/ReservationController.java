@@ -2,6 +2,7 @@ package com.example.controller;
 
 
 import com.example.entity.Reservation;
+import com.example.service.ClientInterface;
 import com.example.service.ReservationInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,6 +20,8 @@ public class ReservationController {
     @Qualifier("reservationServiceImpl")
     @Autowired
     ReservationInterface resRepo;
+    @Autowired
+    ClientInterface clientInterface;
 
     @RequestMapping(value = "/res/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Reservation> getResById(@PathVariable("id") Long id) {
@@ -64,27 +67,12 @@ public class ReservationController {
 
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
-    @RequestMapping(value = "/res/{price}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Reservation> getReservationByPrice(@PathVariable("") Long price) {
+   @RequestMapping(value = "/res/price/{price}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Reservation> getReservationByPrice(@PathVariable("price") Long price) {
         if (price == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
         Reservation res =  this.resRepo.findByPrice(price);
-
-        if (res == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(res, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/res/client/{passport}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Reservation>> getReservationByClientPassport(@PathVariable("passport") String passport) {
-        if (passport == null){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        List<Reservation> res =  this.resRepo.findByClientPassport(passport);
 
         if (res == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

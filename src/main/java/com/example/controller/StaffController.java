@@ -64,4 +64,16 @@ public class StaffController {
 
         return new ResponseEntity<>(staffs, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/staff/{speciality}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Staff> findStaffBySpeciality(@PathVariable("speciality") String speciality) {
+        if (speciality == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        Staff staff = this.staffRepo.findBySpeciality(speciality);
+        if (staff == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(staff, HttpStatus.OK);
+    }
 }
