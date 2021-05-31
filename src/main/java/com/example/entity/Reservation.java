@@ -31,6 +31,13 @@ public class Reservation {
         this.id = id;
     }
 
+    public Collection<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(Collection<Room> rooms) {
+        this.rooms = rooms;
+    }
 
     public Float getPrice() {
         return price;

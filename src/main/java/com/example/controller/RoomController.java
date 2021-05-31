@@ -1,6 +1,8 @@
 package com.example.controller;
 
 import com.example.entity.Room;
+import com.example.repository.RoomRepository;
+import com.example.service.ReservationInterface;
 import com.example.service.RoomInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,6 +20,14 @@ public class RoomController {
     @Qualifier("roomServiceImpl")
     @Autowired
     RoomInterface roomRepo;
+
+    @Qualifier("reservationServiceImpl")
+    @Autowired
+    ReservationInterface res;
+
+    @Qualifier("roomRepository")
+    @Autowired
+    RoomRepository rp;
 
     @RequestMapping(value = "/room/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Room> getRoomById(@PathVariable("id") Long id) {
@@ -60,7 +70,6 @@ public class RoomController {
         if (rooms.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
         return new ResponseEntity<>(rooms, HttpStatus.OK);
     }
     @RequestMapping(value = "/room/number/{number}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -75,4 +84,13 @@ public class RoomController {
         return new ResponseEntity<>(room, HttpStatus.OK);
     }
 
+
+    @RequestMapping(value = "/room/reservation", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Room>> findRoomByALL() {
+        List<Room> rooms = this.rp.findRoomByNotUnicalReservationId();
+        if (rooms.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(rooms, HttpStatus.OK);
     }
+}

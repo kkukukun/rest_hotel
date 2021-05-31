@@ -1,5 +1,8 @@
 package com.example.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,6 +24,7 @@ public class Room {
 
     @ManyToOne
     @JoinColumn(name="id_reservation")
+    @JsonIgnoreProperties(value = {"rooms", "client"}, allowSetters = true)
     private Reservation reservation;
 
     public Long getId() {
